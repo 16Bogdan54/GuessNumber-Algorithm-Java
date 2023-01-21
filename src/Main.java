@@ -11,9 +11,10 @@ public class Main {
         int yourGuess;
         int playerAnswer = 0;
         int countNumTurns = 1;
+        int countMoves = 0;
 
         while (playerAnswer != 1) {
-            possibleGuesses = highRange + lowRange - 1;
+            possibleGuesses = highRange + lowRange;
             yourGuess = (int) Math.ceil(possibleGuesses / 2);
 
             System.out.printf("Is your age %d ?\n", yourGuess);
@@ -21,12 +22,24 @@ public class Main {
             playerAnswer = input.nextInt();
 
 
-            if(playerAnswer == 3)
+            if(playerAnswer == 3) {
                 lowRange = yourGuess + 1;
+                countMoves++;
+            }
 
-            if(playerAnswer == 2)
+            if(playerAnswer == 2) {
                 highRange = yourGuess - 1;
+                countMoves--;
+            }
 
+            if(countMoves == 4 ){
+                highRange = yourGuess * 2;
+                countMoves = 0;
+            }
+            else if(countMoves == -4){
+                lowRange = yourGuess / 2;
+                countMoves = 0;
+            }
             if (playerAnswer == 1)
                 break;
 
