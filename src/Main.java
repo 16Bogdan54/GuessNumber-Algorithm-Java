@@ -5,21 +5,39 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        int lowRange = 1;
-        int highRange = 100;
+        int lowRange;
+        int highRange ;
         int possibleGuesses;
         int yourGuess;
-        int playerAnswer = 0;
+        int playerAnswer;
         int countNumTurns = 1;
+        int n = 1;
 
-        while (playerAnswer != 1) {
-            possibleGuesses = highRange + lowRange - 1;
-            yourGuess = (int) Math.ceil(possibleGuesses / 2);
-
-            System.out.printf("Is your age %d ?\n", yourGuess);
-            System.out.printf("1 - Yes\n2 - Guess a lower age\n3 - Guess a higher age\nAction: ");
+        while(true){
+            System.out.printf("Your age is greater than %d ?\n", (int) Math.pow(10, n));
+            System.out.println("1 - Yes\n2 - No\nAction: ");
             playerAnswer = input.nextInt();
+            if(playerAnswer == 1)
+                n++;
+            if(playerAnswer == 2) {
+                highRange = (int) Math.pow(10, n);
+                lowRange = (int) Math.pow(10, n - 1);
+                break;
+            }
+        }
 
+        while (true) {
+
+            if(highRange == lowRange){
+                highRange++;
+                lowRange--;
+            }
+
+            possibleGuesses = (highRange + lowRange) / 2;
+            yourGuess = (int) Math.ceil(possibleGuesses);
+            System.out.printf("Is your age %d ?\n", yourGuess);
+            System.out.println("1 - Yes\n2 - Guess a lower age\n3 - Guess a higher age\nAction: ");
+            playerAnswer = input.nextInt();
 
             if(playerAnswer == 3)
                 lowRange = yourGuess + 1;
@@ -31,6 +49,7 @@ public class Main {
                 break;
 
             countNumTurns++;
+
         }
 
         System.out.printf("I guessed your age in %d turns !\n", countNumTurns);
