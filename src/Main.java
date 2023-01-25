@@ -10,7 +10,6 @@ public class Main {
         int possibleGuesses;
         int yourGuess;
         int playerAnswer = 0;
-        int countNumTurns = 1;
 
         while (playerAnswer != 1) {
             possibleGuesses = highRange + lowRange - 1;
@@ -30,10 +29,6 @@ public class Main {
             if (playerAnswer == 1)
                 break;
 
-            countNumTurns++;
         }
-
-        System.out.printf("I guessed your age in %d turns !\n", countNumTurns);
-
     }
 }
